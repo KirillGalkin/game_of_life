@@ -10,16 +10,26 @@ class App extends React.Component {
 
   speed = 500;
 
-  inputRef = React.createRef();
-
   handleSubmit = e => {
     e.preventDefault();
-    this.setState({
-      inputShown: false
-    });
-    this.value = this.inputRef.current.value.split("*");
+
+    this.value = this.state.value.split("*");
     this.rows = +this.value[0];
     this.cols = +this.value[1];
+    if (isNaN(this.rows) || isNaN(this.cols)) {
+      this.setState({ className: "invalid" });
+    } else {
+      this.setState({
+        inputShown: false
+      });
+    }
+  };
+
+  onChange = e => {
+    e.target.value === "" && this.setState({ className: "" });
+    this.setState({
+      value: e.target.value
+    });
   };
 
   restoreGame = () => {
@@ -42,7 +52,12 @@ class App extends React.Component {
           <h1>Game Of Life</h1>
           <h3>Please enter size of game field</h3>
           <form onSubmit={this.handleSubmit}>
-            <input type="text" placeholder="rows*cols" ref={this.inputRef} />
+            <input
+              type="text"
+              placeholder="rows*cols"
+              className={this.state.className}
+              onChange={this.onChange}
+            />
             <input type="submit" />
             <button
               type="button"

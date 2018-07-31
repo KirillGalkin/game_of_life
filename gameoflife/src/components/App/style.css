@@ -2,10 +2,9 @@ h1,
 h2,
 h3,
 form {
-  margin: auto;
+  margin: 10px auto 0 auto;
   text-align: center;
   width: 50%;
-  margin-top: 10px;
 }
 
 button {

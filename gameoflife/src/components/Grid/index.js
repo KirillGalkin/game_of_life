@@ -15,8 +15,8 @@ class Grid extends React.Component {
   };
 
   play = () => {
-    let g = this.state.gridFull;
-    let g2 = arrayClone(this.state.gridFull);
+    const g = this.state.gridFull;
+    const g2 = arrayClone(this.state.gridFull);
 
     for (let i = 0; i < this.props.rows; i++) {
       for (let j = 0; j < this.props.cols; j++) {
@@ -59,7 +59,7 @@ class Grid extends React.Component {
   };
 
   clear = () => {
-    let grid = Array(this.props.rows)
+    const grid = Array(this.props.rows)
       .fill()
       .map(() => Array(this.props.cols).fill(false));
     this.setState({ gridFull: grid, generation: 0 });
@@ -67,7 +67,7 @@ class Grid extends React.Component {
   };
 
   selectBox = (row, col) => {
-    let gridCopy = arrayClone(this.state.gridFull);
+    const gridCopy = arrayClone(this.state.gridFull);
     gridCopy[row][col] = !gridCopy[row][col];
     this.setState({
       gridFull: gridCopy
@@ -76,7 +76,7 @@ class Grid extends React.Component {
 
   render() {
     const width = this.props.cols * 16;
-    let rowsArr = [];
+    const rowsArr = [];
     let boxClass = "";
 
     for (let i = 0; i < this.props.rows; i++) {
